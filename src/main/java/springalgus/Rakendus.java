@@ -22,6 +22,24 @@ public class Rakendus {
         return arv1*arv2;
         //http://localhost:8080/korrutus?arv1=3&arv2=5
     }
+    /*@RequestMapping("/arvudesumma")
+    String arvudeSumma(String arvud){
+        double[] sums=new double[arvud.split(",").length];
+        while(sums!=null){
+            sums[]=Double.parseDouble(m)            
+        }
+    }*/
+    @RequestMapping("/arvudesumma")
+    public int arvudeLiitmine(String sisu){
+        String[] m=sisu.split(",");
+        int summa = 0;
+        for(int i=0; i<m.length; i++){
+            summa+=Integer.parseInt(m[i].trim());
+            
+        }
+        return java.util.Arrays.stream(sisu.split(",")).mapToInt(s -> Integer.parseInt(s.trim())).sum();
+    }
+            
     
     public static void main(String[] args) {
 		//System.getProperties().put("server.port", 40305);
