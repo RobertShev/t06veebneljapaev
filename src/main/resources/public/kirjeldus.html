@@ -9,6 +9,13 @@ and open the template in the editor.
         <title>Rakenduse kirjeldus</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script language="javascript">
+             $("button").on('click', function(e) {
+            e.preventDefault();
+            var elem = $(this).parent().find('input[name=myinput\\[\\]]');
+            elem.val( elem.val() + 'add this' );
+            });
+        <script/>
         <script>
             let xhr=new XMLHttpRequest();
             xhr.onreadystatechange=kuvaVastus;
@@ -24,6 +31,12 @@ and open the template in the editor.
                     document.getElementById("vastus").innerHTML=xhr.responseText;
                 }
             }
+            function sisestaArvudSumma(){
+                let a3=document.getElementById("kast3").value;
+                let aadress="/arvudesumma?arvud="+a3;
+                xhr.open("GET", aadress, true);
+                xhr.send();
+            }
         </script>
     </head>
     <body>
@@ -32,5 +45,11 @@ and open the template in the editor.
         <input type="number" id="kast2" />
         <input type="button" value="=" onclick="sisestaArvud()" />
         <span id="vastus">Vastuse koht</span>
+        <br />
+        <div class="wrap">
+        <button>Lisa number</button>
+        <input name="myinput[]" value="" />
+</div>
+        
     </body>
 </html>
