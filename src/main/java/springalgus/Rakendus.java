@@ -29,7 +29,7 @@ public class Rakendus {
             sums[]=Double.parseDouble(m)            
         }
     }*/
-    @RequestMapping("/arvudesumma")
+    @RequestMapping("/liidaArvud")
     public int arvudeLiitmine(String sisu){
         String[] m=sisu.split(",");
         int summa = 0;
