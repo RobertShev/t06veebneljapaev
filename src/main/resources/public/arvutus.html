@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Arvutusleht</title>
+        <meta charset="UTF-8">
+        <script>
+            let xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=kuvaVastus;
+            function lisaKast(){
+               document.getElementById("sisestus").innerHTML+=
+                 "<input type='number' /><br />"
+            }
+            function nupuVajutus(){
+               lisaKast();
+            }
+            function saadaAndmed(){
+              let kastid=document.getElementById("sisestus").getElementsByTagName("input");
+              sisu=Array.prototype.slice.call(kastid).map(kast => kast.value).join(",");
+              xhr.open("GET", "liidaArvud?sisu="+sisu, true);
+              xhr.send();             
+            }
+            function kuvaVastus(){
+               if(xhr.readyState==4){
+                  document.getElementById("vastus").innerHTML=xhr.responseText;
+               }
+            }
+        </script>
+    </head>
+    <body onload='lisaKast(); lisaKast()'>
+        <h1>Arvutamine</h1>
+        <div id="sisestus">
+            
+        </div>
+        <div id="vastus"></div>
+        <input type='button' value="lisa" onclick="nupuVajutus()"/>
+        <input type='button' value="arvuta" onclick="saadaAndmed()"/>
+    </body>
+</html>
